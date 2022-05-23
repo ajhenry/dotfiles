@@ -8,7 +8,7 @@ read -n 1 -r -s -p $'    Press any key to continue or Ctrl+C to abort...\n\n'
 
 # Install Homebrew
 command -v brew >/dev/null 2>&1 ||
-    (echo '🍺  Installing Homebrew' && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")
+    (echo '🍺  Installing Homebrew' && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &&  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/andrew/.zprofile && eval "$(/opt/homebrew/bin/brew shellenv)")
 
 # Install Oh My Zsh
 if [ ! -f ~/.oh-my-zsh/oh-my-zsh.sh ]; then

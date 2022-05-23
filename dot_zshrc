@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Load up zpm
+#Load up zpm
 if [[ ! -f ~/.zpm/zpm.zsh ]]; then
     git clone --recursive https://github.com/zpm-zsh/zpm ~/.zpm
 fi
@@ -69,12 +69,21 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# Plugin list
+zpm load zsh-users/zsh-autosuggestions
+zpm load zsh-users/zsh-syntax-highlighting
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages colorize pip python brew macos zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git colored-man-pages colorize pip python brew macos zsh-autosuggestions zsh-syntax-highlighting)
+
+# load up syntax highlighting
+# source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# load up auto suggestions
+# source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source $ZSH/oh-my-zsh.sh
 
@@ -95,6 +104,9 @@ source $ZSH/oh-my-zsh.sh
 
 # macos removed ruby, add it back
 export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+# add vscode to path
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # nvm setup
 export NVM_DIR="$HOME/.nvm"
@@ -143,6 +155,4 @@ if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
 ##### WHAT YOU WANT TO DISABLE FOR WARP - ABOVE
 fi
 
-# Plugin list
-zpm load zsh-users/zsh-autosuggestions
-zpm load zsh-users/zsh-syntax-highlighting # must be last!
+
