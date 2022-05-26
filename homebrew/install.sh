@@ -21,7 +21,6 @@ formulae=(
 )
 casks=(
     aerial
-    clipy
     google-chrome
     kap
     "iterm2"

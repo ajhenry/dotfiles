@@ -1,11 +1,13 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-#Load up zpm
-if [[ ! -f ~/.zpm/zpm.zsh ]]; then
-    git clone --recursive https://github.com/zpm-zsh/zpm ~/.zpm
+# Load up antigen
+if [[ ! -f ~/.antigen/antigen.zsh ]]; then
+    mkdir ~/.antigen
+    curl -L git.io/antigen >~/.antigen/antigen.zsh
 fi
-source ~/.zpm/zpm.zsh
+source ~/.antigen/antigen.zsh
+antigen use oh-my-zsh
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/andrew/.oh-my-zsh"
@@ -15,12 +17,6 @@ export ZSH="/Users/andrew/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -36,7 +32,7 @@ ZSH_THEME="robbyrussell"
 DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=1
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -69,23 +65,45 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Plugin list
-zpm load zsh-users/zsh-autosuggestions
-zpm load zsh-users/zsh-syntax-highlighting
+# log for antigent
+ANTIGEN_LOG=~/.antigen/antigen.log
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages colorize pip python brew macos zsh-autosuggestions zsh-syntax-highlighting)
+# Load up antigen plugins
+antigen bundle git
+antigen bundle heroku
+antigen bundle pip
+antigen bundle lein
+antigen bundle command-not-found
+antigen bundle colored-man-pages
+antigen bundle colorize
+antigen bundle python
+antigen bundle brew
+antigen bundle macos
+antigen bundle autojump
+antigen bundle dirhistory
+antigen bundle MikeDacre/careful_rm
+antigen bundle "MichaelAquilina/zsh-you-should-use"
+antigen bundle brymck/print-alias # Shows alias after each command
+antigen bundle ajhenry/smile@main
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
 
-# load up syntax highlighting
-# source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# load up auto suggestions
-# source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Apply our antigen
+antigen apply
 
+# Source oh my zsh
 source $ZSH/oh-my-zsh.sh
+
+# Source syntax highlighting
+source /Users/andrew/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Print alias config
+export PRINT_ALIAS_PREFIX=$'\e[2m(alias) ──> '
+export PRINT_ALIAS_FORMAT=$'\e[2m'
+export PRINT_NON_ALIAS_FORMAT=$'\e[2m'
+
+export PRINT_ALIAS_IGNORE_REDEFINED_COMMANDS=true
+export PRINT_ALIAS_IGNORE_ALIASES=(example_alias)
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -98,9 +116,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# not sure if this is needed
-# source /Users/andrew/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # macos removed ruby, add it back
 export PATH="/usr/local/opt/ruby/bin:$PATH"
@@ -117,6 +132,7 @@ export NVM_DIR="$HOME/.nvm"
 eval $(thefuck --alias)
 alias f="fuck"
 
+# Set encoding
 export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'
 
@@ -127,10 +143,16 @@ export VISUAL="$EDITOR"
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/andrew/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH
 
+# fzf autocompletion
+if ! command -v fzf &>/dev/null; then
+    $(brew --prefix)/opt/fzf/install --all
+fi
+
+# Warp terminal guard
 if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
     ##### WHAT YOU WANT TO DISABLE FOR WARP - BELOW
 
-    # Typewritter settings
+    # Typewritten settings
     TYPEWRITTEN_PROMPT_LAYOUT="pure"
     TYPEWRITTEN_SYMBOL="->"
     TYPEWRITTEN_COLOR_MAPPINGS="primary:#9580FF;secondary:#8AFF80;accent:#FFFF80;info_negative:#FF80BF;info_positive:#8AFF80;info_neutral_1:#FF9580;info_neutral_2:#FFFF80;info_special:#80FFEA"
@@ -155,4 +177,4 @@ if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
 ##### WHAT YOU WANT TO DISABLE FOR WARP - ABOVE
 fi
 
-
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
