@@ -137,6 +137,9 @@ export NVM_DIR="$HOME/.nvm"
 eval $(thefuck --alias)
 alias f="fuck"
 
+# alias for finder
+alias finder="open"
+
 # Set encoding
 export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'

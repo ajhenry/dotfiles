@@ -19,9 +19,11 @@ formulae=(
     pyenv
     thefuck
     alt-tab
+    logitech-g-hub
 )
 taps=(
     "homebrew/cask-fonts"
+    "homebrew/cask-drivers"
 )
 casks=(
     aerial
@@ -40,8 +42,8 @@ casks=(
 
 brew update
 
-brew install ${formulae[@]}
 brew tap ${taps[@]}
+brew install ${formulae[@]}
 brew install --cask ${casks[@]}
 
 brew cleanup
