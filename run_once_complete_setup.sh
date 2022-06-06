@@ -6,15 +6,15 @@ NORM=$(tput sgr0)
 
 # Install all the apps from homebrew
 echo -e "${BOLD}Installing Homebrew apps"
-./homebrew/install.sh
+~/config/homebrew/install.sh
 
 # Install dependencies for node
 echo -e "\n${BOLD}Installing nvm and npm dependencies"
-./node/install.sh
+~/config/node/install.sh
 
 # Set preferences for macos
 echo -e "\n${BOLD}Configuring OSX Preferences"
-./macos/install.sh
+~/config/macos/install.sh
 
 # Setup additional apps like vscode
 echo -e "\n${BOLD}You must set up Raycast and iTerm profiles manually"

@@ -10,13 +10,16 @@ source ~/.antigen/antigen.zsh
 antigen use oh-my-zsh
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/andrew/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
+
+# Source oh my zsh
+source $ZSH/oh-my-zsh.sh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME=""
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -68,6 +71,9 @@ COMPLETION_WAITING_DOTS="true"
 # log for antigent
 ANTIGEN_LOG=~/.antigen/antigen.log
 
+# Alias python3 to python
+alias python="python3"
+
 # Load up antigen plugins
 antigen bundle git
 antigen bundle heroku
@@ -81,21 +87,20 @@ antigen bundle brew
 antigen bundle macos
 antigen bundle autojump
 antigen bundle dirhistory
-antigen bundle MikeDacre/careful_rm
+antigen bundle reobin/typewritten@main
+antigen bundle MikeDacre/careful_rm # This breaks everything if python isn't installed
 antigen bundle "MichaelAquilina/zsh-you-should-use"
 antigen bundle brymck/print-alias # Shows alias after each command
 antigen bundle ajhenry/smile@main
+antigen bundle unixorn/fzf-zsh-plugin@main
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 
 # Apply our antigen
 antigen apply
 
-# Source oh my zsh
-source $ZSH/oh-my-zsh.sh
-
 # Source syntax highlighting
-source /Users/andrew/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /Users/andrew/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Print alias config
 export PRINT_ALIAS_PREFIX=$'\e[2m(alias) ──> '
@@ -141,7 +146,7 @@ export EDITOR="code --wait"
 export VISUAL="$EDITOR"
 
 # heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/andrew/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH
+# HEROKU_AC_ZSH_SETUP_PATH=/Users/andrew/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH
 
 # fzf autocompletion
 if ! command -v fzf &>/dev/null; then

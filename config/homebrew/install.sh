@@ -18,6 +18,10 @@ formulae=(
     xz
     pyenv
     thefuck
+    alt-tab
+)
+taps=(
+    "homebrew/cask-fonts"
 )
 casks=(
     aerial
@@ -37,6 +41,7 @@ casks=(
 brew update
 
 brew install ${formulae[@]}
+brew tap ${taps[@]}
 brew install --cask ${casks[@]}
 
 brew cleanup
