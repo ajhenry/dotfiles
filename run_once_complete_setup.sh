@@ -17,6 +17,6 @@ echo -e "\n${BOLD}Configuring OSX Preferences"
 ./macos/install.sh
 
 # Setup additional apps like vscode
-echo -e "\n${BOLD}Configuring Additional Apps"
+echo -e "\n${BOLD}You must set up Raycast and iTerm profiles manually"
 
 echo -e "\n\n${BOLD}Finished ✅"

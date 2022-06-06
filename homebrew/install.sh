@@ -31,6 +31,7 @@ casks=(
     unnaturalscrollwheels
     hiddenbar
     raycast
+    docker
 )
 
 brew update
